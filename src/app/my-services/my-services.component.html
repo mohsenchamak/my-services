@@ -1,0 +1,90 @@
+<div class="page-container">
+
+  <div class="main">
+    <div class="setting-section">
+      <div class="tittle">{{'سرویس های من'}}</div>
+      <span class="more-icon" nz-icon nzType="more" nzTheme="outline"></span>
+    </div>
+    <div class="search-box">
+      <input [(ngModel)]="searchFilter" (keypress)="searchByName($event)" nz-input placeholder="سروس مورد نظر خود را جستجو کنید..." nzSize="default" />
+    </div>
+    <div class="tabs-section">
+      <div class="tabs-icons">
+        <span [ngStyle]="{'color': (allServicesSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="all-icon"
+          nz-icon nzType="ant-cloud" nzTheme="outline"></span>
+        <span [ngStyle]="{'color': (hostingSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="host-icon" nz-icon
+          nzType="database" nzTheme="outline"></span>
+        <span [ngStyle]="{'color': (domainSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="domain-icon" nz-icon
+          nzType="container" nzTheme="outline"></span>
+        <span [ngStyle]="{'color': (serverSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="server-icon" nz-icon
+          nzType="cloud-server" nzTheme="outline"></span>
+        <span [ngStyle]="{'color': (sslSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="ssl-icon" nz-icon
+          nzType="safety-certificate" nzTheme="outline"></span>
+        <span [ngStyle]="{'color': (cdnSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="cdn-icon" nz-icon
+          nzType="dribbble" nzTheme="outline"></span>
+        <span [ngStyle]="{'color': (otherSelected) ? '#248FDE' : '#55768b'}" class="icon-tab" id="other-icon" nz-icon
+          nzType="appstore" nzTheme="outline"></span>
+      </div>
+      <div class="tabs">
+        <nz-tabset>
+          <nz-tab (nzClick)="selectAllServices()" nzTitle="همه سرویس ها"></nz-tab>
+          <nz-tab (nzClick)="selectHosting()" nzTitle="Hosting"></nz-tab>
+          <nz-tab (nzClick)="selectDomain()" nzTitle="Domain"></nz-tab>
+          <nz-tab (nzClick)="selectServer()" nzTitle="Server"></nz-tab>
+          <nz-tab (nzClick)="selectSSL()" nzTitle="SSL"></nz-tab>
+          <nz-tab (nzClick)="selectCDN()" nzTitle="CDN"></nz-tab>
+          <nz-tab (nzClick)="selectOthers()" nzTitle="سایر محصولات"></nz-tab>
+        </nz-tabset>
+      </div>
+      <div class="servicesNumber">
+        <span>{{allServicesNumber}}{{'سرویس'}}</span>
+        <span>{{hostingNumber}}{{'سرویس'}}</span>
+        <span>{{domainsNumber}}{{'سرویس'}}</span>
+        <span>{{serversNumber}}{{'سرویس'}}</span>
+        <span>{{sslNumber}}{{'سرویس'}}</span>
+        <span>{{cdnNumber}}{{'سرویس'}}</span>
+        <span>{{otherNumber}}{{'سرویس'}}</span>
+      </div>
+    </div>
+    <div class="scrollet">
+      <nz-table #basicTable [nzData]="listOfData" [nzTableLayout]="'fixed'" [nzShowPagination]="false"
+        [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th>نام/مشخصه</th>
+            <th>هزینه</th>
+            <th>تاریخ سررسید</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <ng-container [ngSwitch]="data.status">
+              <td>
+                <nz-badge *ngSwitchCase="'Active'" nzStatus="success"></nz-badge>
+                <nz-badge *ngSwitchCase="'Pending'" nzStatus="warning"></nz-badge>
+                <nz-badge *ngSwitchCase="'Cancelled'" nzStatus="error"></nz-badge>
+                <ng-container  [ngSwitch]="data.type">
+                  <span *ngSwitchCase="'Hosting'" class="row-icon"  nz-icon nzType="database" nzTheme="outline"></span>
+                  <span *ngSwitchCase="'Domain'" class="row-icon" nz-icon nzType="container" nzTheme="outline"></span>
+                  <span *ngSwitchCase="'Server'" class="row-icon" nz-icon nzType="cloud-server" nzTheme="outline"></span>
+                  <span *ngSwitchCase="'SSl'" class="row-icon" nz-iconnzType="safety-certificate" nzTheme="outline"></span>
+                  <span *ngSwitchCase="'CDN'" class="row-icon" nz-icon nzType="dribbble" nzTheme="outline"></span>
+                  <span *ngSwitchCase="'Other'" class="row-icon" nz-icon nzType="appstore" nzTheme="outline"></span>
+                </ng-container>
+                {{ data.name }}
+              </td>
+              <td>{{ data.amount }}</td>
+              <td>{{ data.nextduedate }}</td>
+              <td>
+                <button *ngSwitchCase="'Active'" type="button" class="btn btn-outline-primary">{{'مدیریت سرویس'}}</button>
+                <button *ngSwitchCase="'Pending'" type="button" class="btn btn-outline-primary">{{'مشاهده فاکتور'}}</button>
+                <button *ngSwitchCase="'Cancelled'" type="button" class="btn btn-outline-primary">{{'لغو شده'}}</button>
+              </td>
+            </ng-container>
+            </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>

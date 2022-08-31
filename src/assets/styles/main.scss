@@ -1,0 +1,178 @@
+@mixin container-styles {
+  direction: rtl;
+  width: 100%;
+  height: 100%;
+}
+
+@mixin main {
+  background-color: #fff;
+  position: absolute;
+  left: 270;
+  right: 15%;
+  top: 60px;
+  height: 817px;
+}
+
+@mixin setting {
+  height: 40px;
+  .tittle {
+    float: right;
+    color: #55768b;
+    position: relative;
+    top: 8px;
+    right: 12px;
+  }
+  .more-icon {
+    color: rgb(5, 5, 5);
+    transform: rotate(90deg);
+    float: left;
+    position: relative;
+    left: 12px;
+    top: 9px;
+    font-size: 19px;
+  }
+}
+
+@mixin searchBox {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  input {
+    width: 300px;
+    background: #f2f8fa;
+    border-radius: 10px;
+    height: 40px;
+  }
+  input::-webkit-input-placeholder {
+    color: #84aecd;
+  }
+}
+
+@mixin tab-section {
+  padding-top: 10px;
+}
+
+@mixin tab-icon {
+  position: relative;
+  top: 21px;
+  .icon-tab {
+    position: relative;
+    font-size: 28px;
+    padding: 0 85px 0 0;
+    color: #55768b;
+    opacity: 0.4;
+  }
+  #server-icon {
+    right: 1.25%;
+  }
+  #domain-icon {
+    right: 0.75%;
+  }
+  #ssl-icon {
+    right: 0.4%;
+  }
+  #cdn-icon {
+    left: 1.1%;
+  }
+}
+
+@mixin tab-content {
+  position: relative;
+  top: 0;
+  ::ng-deep .ant-tabs-nav-wrap {
+    justify-content: center;
+  }
+  ::ng-deep .ant-tabs-tab {
+    padding: 21px;
+  }
+  ::ng-deep .ant-tabs-tabpane {
+    width: 10%;
+  }
+}
+
+@mixin servic-num {
+  justify-content: flex-start;
+  span {
+    min-width: 74px;
+    height: 25px;
+    background: #f2f8fa;
+    border-radius: 5px;
+    color: #248fde;
+    margin: 0px 45px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@mixin _scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 435px;
+  direction: ltr;
+}
+
+@mixin all-table-content {
+  ::ng-deep .ant-table-wrapper {
+    .ant-spin-nested-loading {
+      .ant-spin-container {
+        direction: rtl;
+        table {
+          // width: 916px;
+          height: 435px;
+          text-align: right;
+          thead {
+            height: 60px;
+            tr {
+              th {
+                text-align: right;
+              }
+            }
+          }
+          tbody {
+            tr {
+              td {
+                .row-icon {
+                  color: #55768b;
+                  position: relative;
+                  top: -3px;
+                  font-size: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: yekan-normal;
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/yekan-normal/yekan-normal.eot");
+  src: url("../fonts/yekan-normal/yekan-normal.eot?#iefix") format("embedded-opentype"), url("../fonts/yekan-normal/yekan-normal.woff") format("woff"),
+  url("../fonts/yekan-normal/yekan-normal.ttf") format("truetype");
+}
+
+body {
+  height: 755px;
+  background: #f2f8fa;
+}
+::-webkit-scrollbar {
+  width: 2px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  background-clip: padding-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
